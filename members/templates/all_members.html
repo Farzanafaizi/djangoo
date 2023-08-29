@@ -1,7 +1,7 @@
 {% extends "master.html" %}
 
 {% block title %}
-  My Tennis Club - List of all members
+My Tennis Club - List of all members
 {% endblock %}
 
 
@@ -9,14 +9,22 @@
 
 <p><a href="/">HOME</a></p>
 
-  <h1>Members</h1>
-  
+<form
+ action="/members/" method="post"> 
+  {% csrf_token %}
+  {{ form }}
+  <input type="submit" value="Save">
+</form>
+
+
+  <h1>student list</h1>
+
   <ul>
     {% for x in mymembers %}
-      <li><a href="details/{{ x.id }}">{{ x.firstname }} {{ x.lastname }}</a></li>
+    <li><a href="details/{{ x.id }}">{{ x.firstname }} {{ x.lastname }}</a></li>
     {% endfor %}
   </ul>
-{% endblock %}
+  {% endblock %}
 
 
 
@@ -29,7 +37,7 @@
 
 
 
-<!-- {% load static %}
+  <!-- {% load static %}
 <!DOCTYPE html>
 <html>
   <link rel="stylesheet" href="{% static 'myfirst.css' %}">
@@ -47,5 +55,3 @@
 
 </body>
 </html> -->
-
-
